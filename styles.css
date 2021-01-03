@@ -1,0 +1,148 @@
+main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.fun-link {
+  color: black;
+  text-decoration: none;
+  grid-area: link;
+  height: 30px;
+  text-align: center;
+  position:relative;
+  top: 10px;
+}
+
+.container {
+  overflow: auto;
+  display: grid;
+  grid-template-areas:
+    'display display display llama'
+    'b1 b2 b3 plus'
+    'b4 b5 b6 minus'
+    'b7 b8 b9 divide'
+    'b0 decimal equal multiply'
+    'link link link link';
+  width: 400px;
+  height: 550px;
+  position: relative;
+  top: 250px;
+}
+
+.display {
+  grid-area: display;
+  display: flex;
+  width: 280px;
+  height: 80px;
+  font-size: 50px;
+  vertical-align: center;
+  align-items: center;
+  justify-content: flex-end;
+  border: 2px solid #CC5500;
+  border-radius: 2.5%;
+  background-color: white;
+  padding: 5px;
+}
+
+.button {
+  width: 90px;
+  height: 90px;
+  font-size: 30px;
+  border: 2px solid black;
+  border-radius: 50%;
+  background-color: white;
+  box-shadow: 0 5px grey;
+}
+
+.button:active {
+  box-shadow: 0 3px black;
+  transform: translateY(2px);
+}
+
+.button:focus{
+  outline: none;
+}
+
+.opbutton:hover {
+  background-color: #CC5500;
+}
+
+.numbutton:hover {
+  background-color: turquoise;
+}
+
+.llama {
+  grid-area: llama;
+}
+
+img {
+  width: auto;
+  height:75%;
+  position: relative;
+  top: 3px;
+}
+
+.b1 {
+  grid-area: b1;
+}
+
+.b2 {
+  grid-area: b2;
+}
+
+.b3 {
+  grid-area: b3;
+}
+
+.b4 {
+  grid-area: b4;
+}
+
+.b5 {
+  grid-area: b5;
+}
+
+.b6 {
+  grid-area: b6;
+}
+
+.b7 {
+  grid-area: b7;
+}
+
+.b8 {
+  grid-area: b8;
+}
+
+.b9 {
+  grid-area: b9;
+}
+
+.b0 {
+  grid-area: b0;
+}
+
+.decimal {
+  grid-area: decimal;
+}
+
+.equal {
+  grid-area: equal;
+}
+
+.plus{
+  grid-area: plus;
+}
+
+.minus {
+  grid-area: minus;
+}
+
+.divide{
+  grid-area: divide;
+}
+
+.multiply {
+  grid-area: multiply;
+}
