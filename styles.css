@@ -33,16 +33,16 @@ main {
 .display {
   grid-area: display;
   display: flex;
-  width: 280px;
-  height: 80px;
+  width: 270px;
+  height: 70px;
   font-size: 50px;
   vertical-align: center;
   align-items: center;
   justify-content: flex-end;
-  border: 2px solid #CC5500;
-  border-radius: 2.5%;
+  border: 2px solid black;
+  border-radius: 50px;
   background-color: white;
-  padding: 5px;
+  padding: 10px;
 }
 
 .button {
@@ -129,6 +129,10 @@ img {
 
 .equal {
   grid-area: equal;
+}
+
+.equal:hover {
+  background-color: green;
 }
 
 .plus{
