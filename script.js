@@ -1,17 +1,17 @@
 function add(nums) {
-  return ((nums[0]*10**8)+(nums[1]*10**8))/10**8;
+  return nums[0]+nums[1];
 }
 
 function subtract(nums) {
-  return ((nums[0]*10**8)-(nums[1]*10**8))/10**8;
+  return nums[0]-nums[1];
 }
 
 function multiply(nums) {
-  return ((nums[0]*10**8)*(nums[1]*10**8))/10**8;
+  return nums[0]*nums[1];
 }
 
 function divide(nums) {
-  return ((nums[0]*10**8)/(nums[1]*10**8))/10**8;
+  return nums[0]/nums[1];
 }
 
 function operate(op, nums) {
