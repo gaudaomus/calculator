@@ -1,17 +1,17 @@
 function add(nums) {
-  return nums[0] + nums[1];
+  return ((nums[0]*10**8)+(nums[1]*10**8))/10**8;
 }
 
 function subtract(nums) {
-  return nums[0] - nums[1];
+  return ((nums[0]*10**8)-(nums[1]*10**8))/10**8;
 }
 
 function multiply(nums) {
-  return nums[0] * nums[1];
+  return ((nums[0]*10**8)*(nums[1]*10**8))/10**8;
 }
 
 function divide(nums) {
-  return nums[0] / nums[1];
+  return ((nums[0]*10**8)/(nums[1]*10**8))/10**8;
 }
 
 function operate(op, nums) {
@@ -45,55 +45,99 @@ let nums = [];
 for (i=0;i<numList.length;i++) {
   let num = numList[i];
   num.addEventListener('click', function() {
-    if (showNums.length < 9) {
+    if (showNums.length < 9 && activeOp == 1) {
     showNums+=num.value;
     display(showNums);
     }
   });
 }
 
+let activeDec = 0;
+const decimal = document.querySelector('.decimal');
+decimal.addEventListener('click', function() {
+  if (showNums.length == 0 && activeOp == 1 && activeDec == 0) {
+    activeDec = 1;
+    showNums+='0.';
+    display(showNums);
+  }
+  if (showNums.length < 9 && activeOp == 1 && activeDec == 0) {
+    activeDec = 1;
+    showNums+=decimal.value;
+    display(showNums);
+  }
+});
+
 const opList = document.querySelectorAll('.opbutton');
-let doOp = '';
+let holdOp = [];
+let backOp = '';
+let activeOp = 1;
 for (i=0;i<opList.length;i++) {
   let op = opList[i];
   op.addEventListener('click', function() {
-    doOp = op.value;
+    holdOp.push(op.value);
+    activeDec = 0;
     if (showNums.length > 0) {
-      nums.push(parseInt(showNums));
+      nums.push(parseFloat(showNums));
       showNums = '';
-      display(showNums);
+    }
+    if (nums.length > 0) {
+      opList.forEach(e => e.classList.remove("opClicked"));
+      op.classList.add("opClicked");
+      activeOp = 1;
+    }
+    if (nums.length >= 2) {
+      backOp = String(holdOp.slice(-2,-1));
+      ans = operate(backOp, nums);
+      if (ans == Infinity) {
+        display("Loser!");
+      } else {
+        ans = ans.toFixed(3);
+        display(ans);
+        nums = [ans];
+      }
     }
   });
 }
 
 const equal = document.querySelector('.equal');
+let doOp = '';
 equal.addEventListener('click', function() {
-  if (showNums.length > 0) {
-    nums.push(parseInt(showNums));
+  opList.forEach(e => e.classList.remove("opClicked"));
+  activeOp = 0;
+  activeDec = 0;
+    if (showNums.length > 0) {
+    nums.push(parseFloat(showNums));
     showNums = '';
   }
-  if (nums.length == 2) {
+  if (nums.length >= 2) {
+    doOp = String(holdOp.slice(-1));
     ans = operate(doOp, nums);
-    display(ans);
-    nums = [ans];
+    if (ans == Infinity) {
+      display("Loser!");
+    } else {
+      ans = Math.round(ans * 10**3) / 10**3;
+      display(ans);
+      nums = [ans];
+    }
   }
 });
 
+const llama = document.querySelector('.llama');
+llama.addEventListener('click', function() {
+  opList.forEach(e => e.classList.remove("opClicked"));
+  activeOp = 1;
+  showNums = '';
+  nums = [];
+  holdOp = [];
+  backOp = '';
+  doOp = '';
+  ans = '';
+  activeDec = 0;
+  display(showNums);
+});
 
-/*const llama = document.querySelector('.llama');
-const b1 = document.querySelector('.b1');
-const b2 = document.querySelector('.b2');
-const b3 = document.querySelector('.b3');
-const b4 = document.querySelector('.b4');
-const b5 = document.querySelector('.b5');
-const b6 = document.querySelector('.b6');
-const b7 = document.querySelector('.b7');
-const b8 = document.querySelector('.b8');
-const b9 = document.querySelector('.b9');
-const b0 = document.querySelector('.b0');
-const decimal = document.querySelector('.decimal');
-
-const add = document.querySelector('.add');
-const subtract = document.querySelector('.subtract');
-const multiply = document.querySelector('.multiply');
-const divide = document.querySelector('.divide');*/
+window.addEventListener('keydown', function(e) {
+  let pressedKey = document.querySelector(`button[data-key="${e.keyCode}"]`)
+  if (!pressedKey) return;
+  pressedKey.click();
+});

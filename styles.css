@@ -55,6 +55,10 @@ main {
   box-shadow: 0 5px grey;
 }
 
+.opClicked {
+  background-color: #CC5500;
+}
+
 .button:active {
   box-shadow: 0 3px black;
   transform: translateY(2px);
@@ -69,6 +73,10 @@ main {
 }
 
 .numbutton:hover {
+  background-color: turquoise;
+}
+
+.decimal:hover {
   background-color: turquoise;
 }
 
