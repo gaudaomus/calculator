@@ -91,7 +91,7 @@ for (i=0;i<opList.length;i++) {
       if (ans == Infinity) {
         display("Loser!");
       } else {
-        ans = ans.toFixed(3);
+        ans = Math.round(ans * 10**3) / 10**3;
         display(ans);
         nums = [ans];
       }
